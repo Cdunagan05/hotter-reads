@@ -3,6 +3,8 @@ class ReadsController < ApplicationController
     @url = Read.find_or_create_by(url: (params[:url]))
     @url.count += 1
     @url.save
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    render json: @url.to_json, status: 200
   end
 
   def index
